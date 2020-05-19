@@ -4,3 +4,4 @@ Trying to make a project to make collaborations of the group on activities or de
 or adding checklists.
 
 If I ever make this public, by that time this readme will be fun to read I suppose, lol.
+chup randi
