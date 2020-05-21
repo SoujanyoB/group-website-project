@@ -8,17 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="login-area">
-            <form action="/index" method="POST">
+        <form action="/index" method="POST">
+            <div class="form-field">
+                <label for="username">Username</label>
                 <input type="text" name="user" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-field">
+                <label for="password">Password</label>
                 <input type="password" name="pass" id="password" placeholder="Enter password here!">
-                <button type="submit">Login</button>
-            </form>
-        </div>
-        <div class="option-area"><p>OR</p></div>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <!-- <div class="option-area"><p>OR</p></div>
         <div class="signup-area">
             <a href="#">Sign Up using Google</a>
-        </div>
+        </div> -->
     </div>
 </body>
 </html>
