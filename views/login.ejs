@@ -8,14 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <form action="/index" method="POST">
+        <form action="/user" method="POST">
             <div class="form-field">
                 <label for="username">Username</label>
-                <input type="text" name="user" id="username" placeholder="Enter your username">
+                <input type="text" name="user" id="username" placeholder="Enter your username" required>
             </div>
             <div class="form-field">
                 <label for="password">Password</label>
-                <input type="password" name="pass" id="password" placeholder="Enter password here!">
+                <input type="password" name="pass" id="password" placeholder="Enter password here!" required>
             </div>
             <button type="submit">Login</button>
         </form>

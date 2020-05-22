@@ -31,11 +31,12 @@ body {
       margin: 20px;
     }
       .form-field input {
-        width: 100%;
+        width: 98%;
         line-height: 1.5;
         background: transparent;
         border: none;
         border-bottom: 1px solid black;
+        padding: 0 5px 5px 5px;
       }
 
 
@@ -46,7 +47,6 @@ body {
       .container form>button {
         margin: 20px 20px 40px;
         line-height: 2;
-        
       }
 
     
