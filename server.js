@@ -1,67 +1,87 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const multer = require('multer');
-const upload = multer();
-const path = require('path');
-const app = express();
-const cookieParser = require('cookie-parser');
-
-const port = 3000;
-
-
-app.set('view-engine', 'ejs');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(upload.array());
-app.use(cookieParser());
-app.use(session({secret: "Your secret key"}));
-
-var Users = [];
-
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', (request, response) => {
-    response.render("login.ejs");
-});
-
-app.post('/user', (req, res) => {
-   if(!req.body.user || !req.body.pass) {
-       res.status("400");
-       res.send("Invalid Details!");
-       console.log(req.body.user + " " + req.body.pass);
-   } else {
-       Users.filter(function(user) {
-        if(user.username === req.body.username) {
-            res.render("login/ejs", {message: "User already exists!"});
-        }
-       });
-       var newUser = {username: req.body.username, password:req.body.password};
-       Users.push(newUser);
-       req.session.user = newUser;
-       res.redirect('/user');
-   }
-});
-
-function checkSignIn(req, res) {
-    if(req.session.user) {
-        next();
-    } else {
-        var err = new Error("Not Logged In!");
-        console.log(req.session.user);
-        next(err);
-    }
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
 }
 
-app.get('/user', checkSignIn, function(req, res) {
-    res.render('user.ejs', {id: req.session.user.username});
+const express = require('express')
+const app = express()
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+const methodOverride = require('method-override')
+
+const initializePassport = require('./passport-config')
+initializePassport(
+  passport,
+  email => users.find(user => user.email === email),
+  id => users.find(user => user.id === id)
+)
+
+const users = []
+
+app.set('view-engine', 'ejs')
+app.use(express.urlencoded({ extended: false }))
+app.use(flash())
+app.use(session({
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(methodOverride('_method'))
+
+app.get('/', checkAuthenticated, (req, res) => {
+  res.render('index.ejs', { name: req.user.name })
 })
 
-app.use('/user', function(err, req, res, next){
-    console.log(err);
-       //User should be authenticated! Redirect him to log in.
-       res.redirect('/');
-});
+app.get('/login', checkNotAuthenticated, (req, res) => {
+  res.render('login.ejs')
+})
 
-app.listen(port, () => console.log(`App running at port ${port}`));
+app.post('/login', checkNotAuthenticated, passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/login',
+  failureFlash: true
+}))
+
+app.get('/register', checkNotAuthenticated, (req, res) => {
+  res.render('register.ejs')
+})
+
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10)
+    users.push({
+      id: Date.now().toString(),
+      name: req.body.name,
+      email: req.body.email,
+      password: hashedPassword
+    })
+    res.redirect('/login')
+  } catch {
+    res.redirect('/register')
+  }
+})
+
+app.delete('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+})
+
+function checkAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next()
+  }
+
+  res.redirect('/login')
+}
+
+function checkNotAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) {
+    return res.redirect('/')
+  }
+  next()
+}
+
+app.listen(3000)
