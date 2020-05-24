@@ -5,6 +5,16 @@
 input, label {
     font-size: x-large;
 }
+a{
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
 html {
     scroll-behavior: smooth;
 }
@@ -26,6 +36,13 @@ body {
     border-radius: 10px;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
   }
+    .container form h1,h3 {
+      margin: 20px 0;
+      /* border: 1px solid blue; */
+      width: 100%;
+      text-align: center;
+    }
+
     .form-field {
       /* border: 1px solid black; */
       margin: 20px;
@@ -35,7 +52,7 @@ body {
         line-height: 1.5;
         background: transparent;
         border: none;
-        border-bottom: 1px solid black;
+        border-bottom: 1.5px solid black;
         padding: 0 5px 5px 5px;
       }
 
@@ -43,11 +60,20 @@ body {
       .form-field>* {
         display: block;
       }
+      
     
       .container form>button {
         margin: 20px 20px 40px;
         line-height: 2;
+        font-size: larger;
       }
+
+    /* to put exclamation mark after user messes up with required input */
+    .invalid::after {
+      content: "!";
+      font-weight: bolder;
+      color: red;
+    }
 
     
     
