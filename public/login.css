@@ -1,13 +1,13 @@
 * {
     margin: 0;
     padding: 0;
-    background-color: rgb(23, 23, 23);
+    background-color: rgb(20, 20, 20);
     color: white;
 }
 
 .section{
     position: absolute;
-    left: -170px;
+    left: -110px;
     top: 0;
     height: 100%;
     display: flex;
@@ -20,15 +20,6 @@
 .section:hover {
     left: 0px;   
 }
-.show-letter {
-    animation: showContent 1s ease-in-out;
-}
-
-
-
-.hide {
-    display: none;
-}
 
 
 .icon-holder {
@@ -37,17 +28,28 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 40px;
+    font-size: 24px;
+    cursor: pointer;
 }
 
 .icon-holder span {
     margin: 0 20px;
-}
-.material-icons.md-40 {
-    margin-left: 10px;
-    font-size: 40px;
+    padding: 10px 0;
+    background-color: transparent;
 }
 
+.icon-holder:hover {
+    background-color: #000000;
+}
+.material-icons.md-24 {
+    margin-left: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+
+
+/***************************** Main section **************************************/
 .main {
-    margin: 1% 10%;
+    margin: 20px 100px;
 }
