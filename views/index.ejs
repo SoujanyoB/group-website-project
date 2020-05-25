@@ -1,5 +1,41 @@
-<h1>You are succesfully logged in  <%= name %></h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome <%= name %></title>
+  <link rel="stylesheet" href="login.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <div class="section icon-items">
+    <div class="icons">
+      <div class="icon-holder"><span>Home</span><span class="material-icons md-40">home</span></div>
+      <div class="icon-holder"><span>Gallery</span><span class="material-icons md-40">photo_library</span></div>
+      <div class="icon-holder"><span>Ranks</span><span class="material-icons md-40">equalizer</span></div>
+      <div class="icon-holder"><span>Playlists</span><span class="material-icons md-40">queue_music</span></div>
+    </div>
+    <div class="icons">
+      <div class="icon-holder"><span>Logout</span><span class="material-icons md-40">exit_to_app</span></div>
+      <div class="icon-holder"><span>Help</span><span class="material-icons md-40">help_outline</span></div>
+    </div>
+  </div>
+  
+
+  <div class="main">
+    <h1>You are succesfully logged in  <%= name %></h1>
 <h2> Welcome to the depressed fags website</h2>
 <form action="/logout?_method=DELETE" method="POST">
   <button type="submit">Log Out</button>
 </form>
+  </div>
+
+
+
+
+  <!------------------------ javascript ----------------->
+  <script>
+    
+  </script>
+</body>
+</html>
