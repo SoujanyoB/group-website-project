@@ -4,10 +4,14 @@
     background-color: rgb(20, 20, 20);
     color: white;
 }
+a {
+    text-decoration: none;
+}
 
 .section{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: absolute;
-    left: -110px;
+    left: -150px;
     top: 0;
     height: 100%;
     display: flex;
@@ -22,13 +26,29 @@
 }
 
 
+
 .icon-holder {
-    position: relative;
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    font-size: 24px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.icon-holder form {
+    width: 100%;
+    /* border: 1px solid; */
+    background: transparent;
+}
+.icon-holder form button {
+    width: 100%;
+    border: none;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-size: 30px;
     cursor: pointer;
 }
 
@@ -43,7 +63,7 @@
 }
 .material-icons.md-24 {
     margin-left: 10px;
-    font-size: 24px;
+    font-size: 30px;
     color: white;
 }
 

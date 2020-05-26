@@ -11,6 +11,9 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const path = require('path');
 
+// Requiring codeforces modules
+const handleUsers = require('./codeforces/handleUsers');
+
 const port = 3000;
 
 const initializePassport = require('./passport-config');
@@ -39,6 +42,12 @@ app.get('/', checkAuthenticated, (req, res) => {
   res.render('index.ejs', { name: req.user.name });
 });
 
+app.get('/rankings', checkAuthenticated, (req, res) => {
+  res.render('rankings.ejs', { name: req.user.name });
+});
+
+
+
 app.get('/login', checkNotAuthenticated, (req, res) => {
   res.render('login.ejs');
 });
@@ -60,7 +69,8 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       id: Date.now().toString(),
       name: req.body.name,
       email: req.body.email,
-      password: hashedPassword
+      password: hashedPassword,
+      codeforcesHandle: ""
     });
     res.redirect('/login');
   } catch {
@@ -89,3 +99,8 @@ function checkNotAuthenticated(req, res, next) {
 }
 
 app.listen(port, () => {console.log(`App listening at ${port}`)});
+
+//////////////////////////////////////////////////////////////////////////  
+var responseObj = handleUsers('soujanyo');
+console.log(responseObj);
+//////////////////////////////////////////////////////////////////////////
