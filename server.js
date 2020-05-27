@@ -24,7 +24,6 @@ initializePassport(
 )
 
 const users = [];
-
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
@@ -39,11 +38,11 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', checkAuthenticated, (req, res) => {
-  res.render('index.ejs', { name: req.user.name });
+  res.render('index.ejs', { name: req.user.name, group: '' });
 });
 
 app.get('/rankings', checkAuthenticated, (req, res) => {
-  res.render('rankings.ejs', { name: req.user.name });
+  res.render('rankings.ejs', { name: req.user.name, group: req.user.group});
 });
 
 
@@ -70,9 +69,11 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
-      codeforcesHandle: ""
+      codeforcesHandle: "",
+      groupName: ""
     });
     res.redirect('/login');
+    console.log(users);
   } catch {
     res.redirect('/register');
   }
@@ -97,10 +98,12 @@ function checkNotAuthenticated(req, res, next) {
   }
   next();
 }
+ 
+
 
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
 //////////////////////////////////////////////////////////////////////////  
-var responseObj = handleUsers.getUser('soujanyo', function(data) { return data});
-console.log('hello ' + responseObj);
+// var responseObj = handleUsers.getUser('soujanyo', function(data) { return data});
+// console.log('hello ' + responseObj);
 //////////////////////////////////////////////////////////////////////////

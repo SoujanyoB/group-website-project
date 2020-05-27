@@ -76,7 +76,7 @@ a {
     top: 0;
     right: 0;
     height: 100%;
-    width: 300px;
+    width: 20%;
     display: grid;
     grid-template-rows: 50% 50%;
     border-left: 1px solid white;
@@ -92,5 +92,42 @@ a {
 
 /***************************** Main section **************************************/
 .main {
-    margin: 20px 100px;
+    padding-top: 20px;
+    border: 1px solid blue;
+    margin-right: 20%;
+    margin-left: 5%;
 }
+
+    #empty {
+        /* border: 1px solid wheat; */
+        position: absolute;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+        /* width: 200px; */
+        padding: 15px 40px;
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: 1px 1px 10px black;
+        display: flex;
+        align-items: center;
+    }
+        #empty span {
+            /* margin-bottom: 20px; */
+            font-size: 24px;
+            background: transparent;
+            margin-right: 20px;
+        }
+        #empty button {
+            padding: 10px 20px;
+            background-color: rgb(40, 40, 40);
+            border: none;
+            font-size: 18px;
+            /* margin-bottom: 10px; */
+        }
+
+        #empty button:hover {
+            cursor: pointer;
+            background-color: black;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5), -1px 1px 5px rgba(0, 0, 0, 0.5);
+        }

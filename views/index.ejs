@@ -12,27 +12,33 @@
   <%- include('partials/left-menu') %>
 
 
-  <div class="main">
-    <h1>You are succesfully logged in  <%= name %></h1>
-    <h2> Welcome to the depressed fags website</h2>
+  <div class="container">
+    <div class="main">
 
   
-   <!--------------- Main section done ------------------------->
-  
-
-
-
-
-  <!-- Chat Section -->
-  <%- include('partials/chat-section') %>
-
-  <!-- <form action="/logout?_method=DELETE" method="POST">
-  <button type="submit">Log Out</button>
-  </form> -->
+      <!--------------- Main section done ------------------------->
+   
+   
+       <% if(group == '') { %>
+         <div id= "empty">
+           <span>Lonely?</span>
+           <button>Add a Friend</button>
+         </div>
+       <% } else { %>
+         <h1>You are succesfully logged in  <%= name %></h1>
+         <h2> Welcome to the depressed fags website</h2>
+       <% } %>
+     
+   
+     <!-- <form action="/logout?_method=DELETE" method="POST">
+     <button type="submit">Log Out</button>
+     </form> -->
+     </div>
+   
+   
+     <!-- Chat Section -->
+     <%- include('partials/chat-section') %>
   </div>
-
-
-
 
   <!------------------------ javascript ----------------->
 </body>
