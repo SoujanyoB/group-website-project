@@ -1,30 +1,24 @@
-const fetch = require('node-fetch');
-const https = require('https');
+const request = require('request');
 
-getUser = (handle) => {
-  var url = 'https://codeforces.com/api/user.info?handles=' + handle;
-  console.log(url);
-
-  https.get(url, (res) => {
-    var body = '';
-
-    res.on('data', (chunk) => {
-      body+=chunk;
-    })
-
-    res.on('end', () => {
-      var response = JSON.parse(body).result[0];
-      // console.log(response);
-      var responseObj = {
-          contri: response.contribution,
-          maxRank: response.maxRank
+var getUser=(handle,callback)=>{
+    request({
+        url:'https://codeforces.com/api/user.info?handles='+handle,
+        json:true
+    },(error,response,body)=>{
+        if(error)
+        {
+           callback("Cannot connect to the codeforces server");
+            
         }
-      return responseObj;
+       
+        else{
+        callback(undefined,{
+            rating:body.result[0].rating,
+            rank:body.result[0].rank
+        });
+        }
+    
     })
-  }).on('error', (e) => {
-    console.log(e);
-  })
-  
 }
 
-module.exports = getUser;
+module.exports.getUser=getUser

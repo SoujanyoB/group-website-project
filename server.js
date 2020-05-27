@@ -101,6 +101,16 @@ function checkNotAuthenticated(req, res, next) {
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
 //////////////////////////////////////////////////////////////////////////  
-var responseObj = handleUsers('soujanyo');
-console.log(responseObj);
+handleUsers.getUser('soujanyo',(err,response)=>{
+  if(err)
+  {
+    console.log(err);
+    
+  }
+  else
+  {
+    console.log("The rating is "+response.rating);
+    
+  }
+})
 //////////////////////////////////////////////////////////////////////////
