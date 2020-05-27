@@ -8,10 +8,11 @@ a {
     text-decoration: none;
 }
 
+/************************** Left Menu **********************/
 .section{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: absolute;
-    left: -150px;
+    left: -190px;
     top: 0;
     height: 100%;
     display: flex;
@@ -28,7 +29,7 @@ a {
 
 
 .icon-holder {
-    margin-top: 10px;
+    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -62,11 +63,31 @@ a {
     background-color: #000000;
 }
 .material-icons.md-24 {
-    margin-left: 10px;
+    margin-left: 50px;
     font-size: 30px;
     color: white;
 }
 
+/**********************************************************************************/
+
+/***************************** Right Menu ****************************************/
+.chat-section {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 300px;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    border-left: 1px solid white;
+}
+
+    .friend-list {
+        /* background-color: #ddd; */
+        border-bottom: 1px solid white;
+        width: 100%;
+
+    }
 
 
 /***************************** Main section **************************************/
