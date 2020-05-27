@@ -104,6 +104,22 @@ function checkNotAuthenticated(req, res, next) {
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
 //////////////////////////////////////////////////////////////////////////  
+<<<<<<< HEAD
 // var responseObj = handleUsers.getUser('soujanyo', function(data) { return data});
 // console.log('hello ' + responseObj);
 //////////////////////////////////////////////////////////////////////////
+=======
+handleUsers.getUser('soujanyo',(err,response)=>{
+  if(err)
+  {
+    console.log(err);
+    
+  }
+  else
+  {
+    console.log("The rating is "+response.rating);
+    
+  }
+})
+//////////////////////////////////////////////////////////////////////////
+>>>>>>> e2ed58ee06b9dcdfdb55342a5010c980e02712ba
