@@ -24,6 +24,7 @@ initializePassport(
 )
 
 const users = [];
+const codeforcesDetails = [];
 app.set('view-engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use(flash());
@@ -38,12 +39,34 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', checkAuthenticated, (req, res) => {
-  res.render('index.ejs', { name: req.user.name, group: '' });
+  res.render('index.ejs', { name: req.user.name, friendList: req.user.friendList});
 });
 
 app.get('/rankings', checkAuthenticated, (req, res) => {
   res.render('rankings.ejs', { name: req.user.name, group: req.user.group});
 });
+
+app.post('/rankings', checkAuthenticated, (req, res) => {
+  
+  handleUsers.getUser(req.body.handle, (err,response)=>{
+    if(err)
+    {
+      console.log(err);
+      
+    }
+    else
+    {
+      // console.log("The rating is "+response.rating);
+      req.user.group.handle = response.handle;
+      req.user.group.rating = response.rating;
+      req.user.group.maxRating = response.maxRating;
+      req.user.group.rank = response.rank;
+      req.user.group.maxRank = response.maxRank;
+      res.render('rankings.ejs', {name: req.user.name, group: req.user.group});
+    }
+  })
+
+})
 
 
 
@@ -69,11 +92,11 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       password: hashedPassword,
-      codeforcesHandle: "",
-      groupName: ""
+      group: {},
+      friendList: []
     });
     res.redirect('/login');
-    console.log(users);
+    // console.log(users);
   } catch {
     res.redirect('/register');
   }
@@ -103,23 +126,22 @@ function checkNotAuthenticated(req, res, next) {
 
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
-//////////////////////////////////////////////////////////////////////////  
-<<<<<<< HEAD
-// var responseObj = handleUsers.getUser('soujanyo', function(data) { return data});
-// console.log('hello ' + responseObj);
-//////////////////////////////////////////////////////////////////////////
-=======
-handleUsers.getUser('soujanyo',(err,response)=>{
-  if(err)
-  {
-    console.log(err);
+// ////////////////////////////////////////////////////////////////////////  
+// handleUsers.getUser('soujanyo',(err,response)=>{
+//   if(err)
+//   {
+//     console.log(err);
     
-  }
-  else
-  {
-    console.log("The rating is "+response.rating);
+//   }
+//   else
+//   {
+//     console.log("The rating is "+response.rating);
+//     codeforcesDetails.rating = response.rating;
+//     codeforcesDetails.rank = response.rank;
     
-  }
-})
-//////////////////////////////////////////////////////////////////////////
->>>>>>> e2ed58ee06b9dcdfdb55342a5010c980e02712ba
+//   }
+
+  
+  
+// })
+////////////////////////////////////////////////////////////////////////

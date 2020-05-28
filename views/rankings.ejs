@@ -13,13 +13,43 @@
 
 
   <div class="main">
-    <h1>You are succesfully logged in  <%= name %></h1>
-    <h2> Welcome to the depressed fags website</h2>
-    Ranking Section
+    <div class="header">
+      <h1>Codeforces Details</h1>
+    </div>
+
+    <h2>Maybe compare your ranks?</h2>
 
    <!--------------- Main section done ------------------------->
     
-    
+    <br><br><br>
+    <% if(Object.keys(group).length === 0 && group.constructor === Object) { %>
+      <div id="empty">
+        <span>Codeforces Handle: </span>
+        <form action="/rankings" method="POST">
+          <input type="text" name="handle">
+        </form>
+        
+      </div>
+    <% } else { %>
+        <div class="ranking-system">
+          <table>
+            <tr>
+              <th>Handle</th>
+              <th>Current Rating</th>
+              <th>Max Rating</th>
+              <th>Rank</th>
+              <th>Max Rank</th>
+            </tr>
+            <tr>
+              <td><%= group.handle %></td>
+              <td><%= group.rating %></td>
+              <td><%= group.maxRating %></td>
+              <td><%= group.rank %></td>
+              <td><%= group.maxRank %></td>
+            </tr>
+          </table>
+        </div>
+    <% } %>
 
 
 

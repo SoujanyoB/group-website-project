@@ -19,10 +19,10 @@
       <!--------------- Main section done ------------------------->
    
    
-       <% if(group == '') { %>
+       <% if(friendList.length === 0) { %>
          <div id= "empty">
            <span>Lonely?</span>
-           <button>Add a Friend</button>
+           <button type="button" id="addFriendButton">Add a Friend</button>
          </div>
        <% } else { %>
          <h1>You are succesfully logged in  <%= name %></h1>
@@ -41,5 +41,22 @@
   </div>
 
   <!------------------------ javascript ----------------->
+  <script>
+    var addFriendButtonDOM = document.getElementById('addFriendButton');
+    console.log(addFriendButtonDOM);
+    addFriendButtonDOM.addEventListener('click', (e) => {
+        e.target.parentNode.style.display = "none";
+        e.target.parentNode.insertAdjacentHTML('afterend', `
+        <div id="empty">
+          <span>Friend ID: </span>
+          <form action="/" method="GET">
+            <input type="text" name="friendID">
+            <button type="submit">Search</button>
+          </form>    
+        </div>
+        `);
+        
+    });
+  </script>
 </body>
 </html>

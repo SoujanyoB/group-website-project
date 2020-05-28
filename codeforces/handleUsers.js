@@ -13,8 +13,12 @@ var getUser=(handle,callback)=>{
        
         else{
         callback(undefined,{
+            handle: body.result[0].handle,
             rating:body.result[0].rating,
-            rank:body.result[0].rank
+            maxRating: body.result[0].maxRating,
+            rank:body.result[0].rank,
+            maxRank: body.result[0].maxRank,
+
         });
         }
     
