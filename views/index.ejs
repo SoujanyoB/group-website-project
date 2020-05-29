@@ -14,6 +14,14 @@
 
   <div class="container">
     <div class="main">
+      <div class="header">
+        <div class="header-section">
+          <h1>Home</h1>
+        </div>
+        <div class="header-section">
+          <%- include('partials/profile-thumbnail') %>
+        </div>
+      </div>
 
   
       <!--------------- Main section done ------------------------->
@@ -33,11 +41,11 @@
      <!-- <form action="/logout?_method=DELETE" method="POST">
      <button type="submit">Log Out</button>
      </form> -->
-     </div>
+    </div>
    
    
-     <!-- Chat Section -->
-     <%- include('partials/chat-section') %>
+    <!-- Chat Section -->
+    <%- include('partials/chat-section') %>
   </div>
 
   <!------------------------ javascript ----------------->
