@@ -58,13 +58,30 @@ app.post('/rankings', checkAuthenticated, (req, res) => {
     }
     else
     {
-      // console.log("The rating is "+response.rating);
       req.user.group.handle = response.handle;
       req.user.group.rating = response.rating;
       req.user.group.maxRating = response.maxRating;
       req.user.group.rank = response.rank;
       req.user.group.maxRank = response.maxRank;
-      res.render('rankings.ejs', {name: req.user.name, group: req.user.group});
+      // console.log(req.user.group);
+      getSubmissions.getSubmission(response.handle,(err,response)=>{
+        if (err) {
+          return console.log(err);
+      
+        }
+      
+        var Submissions=response.res;
+       
+        var CorrectSubmissions=Submissions.filter((Submissions)=>Submissions.verdict==="OK");
+        req.user.group.submissions = CorrectSubmissions;
+        req.user.group.submissionsLength = CorrectSubmissions.length;
+        
+        res.render('rankings.ejs', {name: req.user.name, group: req.user.group});
+         
+        
+      })
+      // console.log("The rating is "+response.rating);
+      
     }
   })
 
@@ -129,30 +146,29 @@ function checkNotAuthenticated(req, res, next) {
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
 
-getSubmissions.getSubmission('KSamiksha',(err,response)=>{
-  if (err) {
-    return console.log(err);
+// getSubmissions.getSubmission('KSamiksha',(err,response)=>{
+//   if (err) {
+//     return console.log(err);
 
-  }
+//   }
 
-  var Submissions=response.res;
+//   var Submissions=response.res;
  
-  var CorrectSubmissions=Submissions.filter((Submissions)=>Submissions.verdict==="OK");
+//   var CorrectSubmissions=Submissions.filter((Submissions)=>Submissions.verdict==="OK");
+
+
+//   for(var i = 0; i<CorrectSubmissions.length; i++) {
+//     if(i==5)
+//       break;
+//     else
+//       console.log(CorrectSubmissions[i].id);
+//   }
+  
 
 
   
-  console.log(CorrectSubmissions[0].id);
-  console.log(CorrectSubmissions[1].id);
-  console.log(CorrectSubmissions[2].id);
-  console.log(CorrectSubmissions[3].id);
-  console.log(CorrectSubmissions[4].id);  
-  
-  
-
-
-  
   
 
   
   
-})
+// })
