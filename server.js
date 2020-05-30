@@ -14,6 +14,8 @@ const path = require('path');
 // Requiring codeforces modules
 const handleUsers = require('./codeforces/handleUsers');
 
+const getSubmissions = require('./codeforces/getSubmissions');
+
 const port = 3000;
 
 const initializePassport = require('./passport-config');
@@ -139,9 +141,35 @@ app.listen(port, () => {console.log(`App listening at ${port}`)});
 //     codeforcesDetails.rating = response.rating;
 //     codeforcesDetails.rank = response.rank;
     
-//   }
+  }
+})
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+getSubmissions.getSubmission('KSamiksha',(err,response)=>{
+  if (err) {
+    return console.log(err);
+
+  }
+
+  var Submissions=response.res;
+ 
+  var CorrectSubmissions=Submissions.filter((Submissions)=>Submissions.verdict==="OK");
+
+
+  
+  console.log(CorrectSubmissions[0].id);
+  console.log(CorrectSubmissions[1].id);
+  console.log(CorrectSubmissions[2].id);
+  console.log(CorrectSubmissions[3].id);
+  console.log(CorrectSubmissions[4].id);  
+  
+  
+
 
   
   
-// })
-////////////////////////////////////////////////////////////////////////
+
+  
+  
+})
