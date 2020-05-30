@@ -128,23 +128,6 @@ function checkNotAuthenticated(req, res, next) {
 
 app.listen(port, () => {console.log(`App listening at ${port}`)});
 
-// ////////////////////////////////////////////////////////////////////////  
-// handleUsers.getUser('soujanyo',(err,response)=>{
-//   if(err)
-//   {
-//     console.log(err);
-    
-//   }
-//   else
-//   {
-//     console.log("The rating is "+response.rating);
-//     codeforcesDetails.rating = response.rating;
-//     codeforcesDetails.rank = response.rank;
-    
-  }
-})
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
 
 getSubmissions.getSubmission('KSamiksha',(err,response)=>{
   if (err) {
