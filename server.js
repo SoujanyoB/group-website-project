@@ -10,6 +10,8 @@ const flash = require('express-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const path = require('path');
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 // Requiring codeforces modules
 const handleUsers = require('./codeforces/handleUsers');
@@ -76,7 +78,7 @@ app.post('/rankings', checkAuthenticated, (req, res) => {
         req.user.group.submissions = CorrectSubmissions;
         req.user.group.submissionsLength = CorrectSubmissions.length;
         
-        res.render('rankings.ejs', {name: req.user.name, group: req.user.group});
+        res.render('rankings.ejs', {name: req.user.name, group: req.user.group, friendList: req.user.friendList});
          
         
       })
@@ -143,7 +145,7 @@ function checkNotAuthenticated(req, res, next) {
  
 
 
-app.listen(port, () => {console.log(`App listening at ${port}`)});
+server.listen(port, () => {console.log(`App listening at ${port}`)});
 
 
 // getSubmissions.getSubmission('KSamiksha',(err,response)=>{

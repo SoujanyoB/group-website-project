@@ -8,14 +8,11 @@
 </head>
 <body>
     <div class="container">
-        <% if (messages.error) { %>
-          <%= messages.error %>
-        <% } %>
         <form action="/login" method="POST">
           <h1>Login</h1>
           <div class="form-field">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" autocomplete="off">
           </div>
           <div class="form-field">
             <label for="password">Password</label>
@@ -25,6 +22,38 @@
           <h3><a href="/register">Register</a></h3>
         </form>
     </div>
+
+
+    <% if(messages.error) { %>
+      <div id="error"><%= messages.error %></div>
+      <script>
+        var errorMessage = document.getElementById('error');
+        var emailInput = document.getElementById('email');
+        var passwordInput = document.getElementById('password');
+        var div = document.createElement('div');
+        div.innerText = errorMessage.innerText;
+        div.style.color = "red";
+        if(errorMessage.innerText == 'Username does not exist') {
+          emailInput.style.border = "1.5px solid red";
+          emailInput.addEventListener('focus', () => emailInput.style.border = "1.5px solid black");
+          emailInput.parentNode.appendChild(div);
+        } else if(errorMessage.innerText == 'Password incorrect') {
+          passwordInput.style.border = "1.5px solid red";
+          passwordInput.parentNode.appendChild(div);
+          passwordInput.addEventListener('focus', function() {
+            passwordInput.style.border = "1.5px solid black";
+          });
+        } else {
+          emailInput.style.border = "1.5px solid red";
+          emailInput.addEventListener('focus', () => emailInput.style.border = "1.5px solid black");
+          passwordInput.style.border = "1.5px solid red";
+          passwordInput.parentNode.appendChild(div);
+          passwordInput.addEventListener('focus', function() {
+            passwordInput.style.border = "1.5px solid black";
+          });
+        }
+      </script>
+    <% } %>
 
 </body>
 </html>

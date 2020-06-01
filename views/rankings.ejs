@@ -38,30 +38,50 @@
         <div class="ranking-system">
           <table>
             <tr>
+              <th>Position</th>
               <th>Handle</th>
-              <th>Current Rating</th>
-              <th>Max Rating</th>
+              <th>Rating</th>
               <th>Rank</th>
-              <th>Max Rank</th>
             </tr>
             <tr>
+              <td>1.</td>
               <td><%= group.handle %></td>
               <td><%= group.rating %></td>
-              <td><%= group.maxRating %></td>
               <td><%= group.rank %></td>
-              <td><%= group.maxRank %></td>
             </tr>
           </table>
-        </div>
-        <div class="submissions">
-          <% for(var i = 0; i< group.submissions.length; i++) { %>
-            <div class="submission-item">
-              <br><br>
-              <a href="https://codeforces.com/contest/<%= group.submissions[i].contestId %>/submission/<%= group.submissions[i].id %>" target="_blank">
-                <%= group.submissions[i].problem.name %>
-              </a>
+          <% if(friendList.length === 0) { %>
+            <div class="add-friend" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              Why not add more friends to compare?
             </div>
           <% } %>
+        </div>
+        <div class="submissions">
+              <table>
+                <tr>
+                  <th>&nbsp;</th>
+                  <th>Problem</th>
+                  <th>By</th>
+                  <th>&nbsp;</th>
+                </tr>
+                <% for(var i = 0; i< group.submissions.length; i++) { %>
+                  <tr>
+                    <td><%= i+1 %>.</td>
+                    <td>
+                      <a href="https://codeforces.com/contest/<%= group.submissions[i].contestId %>/problem/<%= group.submissions[i].problem.index %>" target="_blank">
+                        <%= group.submissions[i].problem.name %>
+                      </a>
+                    </td>
+                    <td>(<%= group.handle %>)</td>
+                    <td>
+                      <a href="https://codeforces.com/contest/<%= group.submissions[i].contestId %>/submission/<%= group.submissions[i].id %>" target="_blank">
+                        <span>Solution</span>
+                      </a>
+                    </td>
+                  </tr>
+                <% } %>
+              </table>
         </div>
     <% } %>
 

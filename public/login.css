@@ -11,7 +11,7 @@ a {
 /************************** Left Menu **********************/
 .section{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    position: absolute;
+    position: fixed;
     left: -190px;
     top: 0;
     height: 100%;
@@ -65,6 +65,11 @@ a {
 .material-icons.md-24 {
     margin-left: 50px;
     font-size: 30px;
+    color: white;
+}
+.material-icons.md-48 {
+    margin-left: 50px;
+    font-size: 48px;
     color: white;
 }
 
@@ -163,8 +168,8 @@ a {
 /********* Profle Secion ***********/
 .profile-preview {
     border-radius: 50%;
-    width: 50%;
-    background-color: white;
+    width: 45%;
+    /* background-color: white; */
 }
 .profile {
     position: absolute;
@@ -172,3 +177,31 @@ a {
     /* z-index: 2; */
     border: 1px solid white;
 }
+
+
+
+
+
+/*** Ranking System *****/
+.ranking-system {
+    position: absolute;
+    left: 50%;
+}
+    .ranking-system table {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .ranking-system table tr th, .ranking-system table tr td {
+        padding: 20px;
+        text-align: center;
+    }
+
+.submissions {
+    margin-left: 4%;
+}
+    .submissions table {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .submissions table tr th, .submissions table tr td {
+        padding: 20px;
+        text-align: center;
+    }
