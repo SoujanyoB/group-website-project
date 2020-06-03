@@ -26,6 +26,12 @@ a {
     left: 0px;   
 }
 
+.icons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 
 .icon-holder {
@@ -40,7 +46,7 @@ a {
 .icon-holder form {
     width: 100%;
     /* border: 1px solid; */
-    background: transparent;
+    background: transparent; 
 }
 .icon-holder form button {
     width: 100%;
@@ -94,6 +100,35 @@ a {
 
     }
 
+
+
+    .chats>* {
+        width: 100%;
+        /* border: 1px solid blue; */
+    }
+        .chat-heading {
+            padding: 5px;
+            box-shadow: 0 2px 5px black;
+        }
+
+        .chat-display-section {
+            /* margin-top: 20px; */
+            border: 1px solid blue;
+        }
+            .chat-display-section>* {
+                padding: 5px 0;
+            }
+        .message-section {
+            position: fixed;
+            bottom: 0;
+        }
+            .message-section form {
+                display: grid;
+                grid-template-columns: 15% 5%;
+            }
+                .message-section form input {
+                    padding: 5px;
+                }
 
 /***************************** Main section **************************************/
 .main {
